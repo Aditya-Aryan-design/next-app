@@ -1,40 +1,57 @@
-import mongoose from "@/DB/connect"
-import navModel from "@/DB/model/NavSchema"
-import Navheading from "./Navheading"
-import Navlink from "./Navlink"
+'use client'
+import {motion as m, AnimatePresence} from 'framer-motion'
+import { navLinks } from '@/const'
+import Link from 'next/link'
+import {usePathname} from 'next/navigation'
+import {CgMenuRightAlt} from 'react-icons/cg'
+import {RxCross1} from 'react-icons/rx'
+import { useState } from 'react'
 
 
-async function Navbar() {
-  try {
-    const navRes = await navModel.findById("64ac6ffc6eab08f5e38c121d")
 
-    const { nav_titleOne, nav_titleTwo, nav_links } = navRes
-    return (
-      <nav>
-        <Navheading titleOne={nav_titleOne} titleTwo={nav_titleTwo} />
-        <ul>
-          {
-            nav_links.map((e) => <Navlink key={e._id} title={e.links_title} link={e.links_link} />)
-          }
-        </ul>
-      </nav>
-    )
-  } catch (e) {
-    console.log(e);
-    return (
-      <nav>
-        <Navheading titleOne={process.env.NAME} titleTwo={process.env.Frame} />
-        <ul>
-          <Navlink title="Home" link="#home" />
-          <Navlink title="About" link="#about" />
-          <Navlink title="Project" link="#project" />
-          <Navlink title="Skills" link="#skills" />
-          <Navlink title="Contact" link="#contact" />
-        </ul>
-      </nav>
-    )
-  }
 
+function Navbar() {
+    const pathname = usePathname()
+
+    const [toggleSidebar, setSidebar] = useState(false)
+
+  return (
+    <m.nav initial={{y:"-100%"}} animate={{y:0}} transition={{duration:2}} className='pl-10 shadow-md shadow-zinc-700 flex items-center justify-around' style={{backgroundImage:"linear-gradient(30deg, black, #433)"}}>
+
+      <h1 className="lg:text-2xl font-extrabold text-zinc-200 flex-1"><span className='text-orange-700'>Aditya</span> Aryan</h1>
+
+
+    <ul className='hidden lg:flex'>
+
+        {
+            navLinks.map((e,i)=>{
+                const isactive = pathname.startsWith(e.link)
+
+                return <Link key={i} href={e.link} className={`px-6 py-3 text-xl hover:bg-zinc-700 border-orange-700 ${isactive && 'text-orange-700 border-b-2'}`} >{e.title}</Link>
+            })
+        }
+
+    </ul>
+
+    <div className='lg:hidden'>
+
+        <div className='mx-10 my-3 text-3xl cursor-pointer' onClick={()=>setSidebar(!toggleSidebar)}>
+            {toggleSidebar ? <RxCross1 /> :<CgMenuRightAlt />}
+        </div>
+
+        <AnimatePresence>
+        {toggleSidebar && <m.ul initial={{x:"100%"}} animate={{x:0}} exit={{x:"100%"}} transition={{duration:0.7}} className='flex flex-col absolute top-14 right-1 rounded-md' style={{background:"linear-gradient(90deg, black, #211)"}}>
+        {
+            navLinks.map((e,i)=>{
+
+                return <Link key={i} href={e.link} className={`px-6 py-3 text-xl hover:bg-zinc-700 border-orange-700 ${pathname === e.link && 'text-orange-700 border-b-2'}`} >{e.title}</Link>
+            })
+        }
+        </m.ul>}
+        </AnimatePresence>
+    </div>
+    </m.nav>
+  )
 }
 
 export default Navbar

@@ -3,7 +3,7 @@
 function page() {
   return (
     <div>
-      Home
+      project
     </div>
   )
 }
