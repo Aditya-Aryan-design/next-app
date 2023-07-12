@@ -1,16 +1,28 @@
-'use client'
-import Main from "./components/Main"
-import {motion as m} from 'framer-motion'
+import Navbar from "./components/Navbar"
 
 
 
-function page() {
-  
+async function page() {
+
   return (
-    
-    <m.div initial={{opacity:0}} animate={{opacity:1}} transition={{duration:1.5}}>
-      <Main />
-    </m.div>
+
+    <div>
+
+      <Navbar />
+      
+      <div>
+      {/* hero */}
+
+      {/* about */}
+
+      {/* project */}
+
+      {/* skills */}
+
+      {/* contact */}
+      </div>
+
+    </div>
   )
 }
 

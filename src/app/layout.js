@@ -1,11 +1,6 @@
-'use client'
 import './globals.css'
-import Navbar from "./components/Navbar"
-import { usePathname } from "next/navigation"
-import ColorContext from "./ContextAPI/ColorContext"
-import ActiveLinkContext from './ContextAPI/ActiveLinks'
-import { useState } from "react"
-import { AnimatePresence } from 'framer-motion'
+
+
 
 export const metadata = {
   title: 'Aditya Aryan',
@@ -13,21 +8,12 @@ export const metadata = {
 }
 
 export default function RootLayout({ children }) {
-  const [color, setColor] = useState("rgb(255,300,100)")
-
-  const pathName = usePathname()
-  const [active, setActive] = useState(pathName)
   
   return (
-    <ColorContext.Provider value={[color,setColor]}>
-      <ActiveLinkContext.Provider value={[active,setActive]}>
     <html lang="en">
       <body className='flex flex-col'>
-      <Navbar/>
           {children}
         </body>
     </html>
-    </ActiveLinkContext.Provider>
-    </ColorContext.Provider>
   )
 }
