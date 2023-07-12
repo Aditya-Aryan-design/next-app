@@ -23,7 +23,7 @@ async function Navbar() {
     console.log(e);
     return (
       <nav>
-        <Navheading titleOne="Aditya" titleTwo="Kumar" />
+        <Navheading titleOne="Aditya" titleTwo="Aryan Demon" />
         <ul>
           <Navlink title="Home" link="#home" />
           <Navlink title="About" link="#about" />
