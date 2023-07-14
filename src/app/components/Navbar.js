@@ -16,7 +16,7 @@ function Navbar() {
     const [toggleSidebar, setSidebar] = useState(false)
 
   return (
-    <m.nav initial={{y:"-100%"}} animate={{y:0}} transition={{duration:2}} className='pl-10 shadow-md shadow-zinc-700 flex items-center justify-around' style={{backgroundImage:"linear-gradient(30deg, black, #433)"}}>
+    <m.nav initial={{y:"-100%"}} animate={{y:0}} transition={{duration:2}} className='pl-10 shadow-md shadow-zinc-700 flex items-center justify-around z-50' style={{backgroundImage:"linear-gradient(30deg, black, #433)"}}>
 
       <h1 className="lg:text-2xl font-extrabold text-zinc-200 flex-1"><span className='text-orange-700'>Aditya</span> Aryan</h1>
 
@@ -40,7 +40,7 @@ function Navbar() {
         </div>
 
         <AnimatePresence>
-        {toggleSidebar && <m.ul initial={{x:"100%"}} animate={{x:0}} exit={{x:"100%"}} transition={{duration:0.7}} className='flex flex-col absolute top-14 right-1 rounded-md' style={{background:"linear-gradient(90deg, black, #211)"}}>
+        {toggleSidebar && <m.ul initial={{y:"-100%"}} animate={{y:0}} exit={{y:"-100%"}} transition={{duration:0.2}} className='flex flex-col absolute top-14 right-1 rounded-md -z-10' style={{background:"linear-gradient(90deg, black, #211)"}}>
         {
             navLinks.map((e,i)=>{
 
