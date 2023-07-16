@@ -5,8 +5,8 @@ function page() {
 
 
   return (
-    <div className="flex flex-col overflow-y-auto">
-    <Hero />
+    <div>
+      <Hero />
     </div>
   )
 }

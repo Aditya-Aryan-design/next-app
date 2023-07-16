@@ -27,7 +27,7 @@ function Navbar() {
             navLinks.map((e,i)=>{
                 const isactive = pathname.startsWith(e.link)
 
-                return <Link key={i} href={e.link} className={`px-6 py-3 text-xl hover:bg-zinc-700 border-orange-700 ${isactive && 'text-orange-700 border-b-2'}`} >{e.title}</Link>
+                return <Link key={i} href={e.link} className={`px-6 py-3 text-xl hover:bg-zinc-700 border-orange-700 ${pathname === e.link ? 'text-orange-700 border-b-2':'text-white border-none'}`} >{e.title}</Link>
             })
         }
 
