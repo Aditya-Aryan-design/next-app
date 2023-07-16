@@ -19,6 +19,7 @@ function SunCanvas() {
   return (
     <div className="w-[48vw] h-[48vw]">
 <Canvas>
+  
         <Suspense fallback={null}>
         <OrbitControls enableZoom={false} autoRotate={true} maxPolarAngle={Math.PI/2} minPolarAngle={Math.PI/2}/>
       <SunMesh/>
